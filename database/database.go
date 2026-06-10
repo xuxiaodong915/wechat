@@ -1,18 +1,19 @@
 package database
 
 import (
+	"go-chain/config"
 	"go-chain/models"
 
-	"github.com/glebarez/sqlite"
+	"gorm.io/driver/mysql"
 	"gorm.io/gorm"
 	"gorm.io/gorm/logger"
 )
 
 var DB *gorm.DB
 
-func Init(dbPath string) error {
+func Init(cfg *config.Config) error {
 	var err error
-	DB, err = gorm.Open(sqlite.Open(dbPath), &gorm.Config{
+	DB, err = gorm.Open(mysql.Open(cfg.DSN()), &gorm.Config{
 		Logger: logger.Default.LogMode(logger.Warn),
 	})
 	if err != nil {

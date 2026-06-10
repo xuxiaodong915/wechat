@@ -15,7 +15,7 @@ RUN apk add --no-cache ca-certificates tzdata
 COPY --from=builder /app/recipe-server .
 
 # Create necessary directories
-RUN mkdir -p data uploads
+RUN mkdir -p uploads
 
 # Copy seed images (sichuan_1.jpg, etc.) for initial image assignment
 COPY --from=builder /app/images ./images
