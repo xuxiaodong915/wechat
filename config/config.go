@@ -1,6 +1,9 @@
 package config
 
-import "time"
+import (
+	"os"
+	"time"
+)
 
 type Config struct {
 	ServerPort string
@@ -8,9 +11,19 @@ type Config struct {
 }
 
 func Load() *Config {
+	port := os.Getenv("PORT")
+	if port == "" {
+		port = ":8080"
+	} else {
+		port = ":" + port
+	}
+	dbPath := os.Getenv("DB_PATH")
+	if dbPath == "" {
+		dbPath = "data/recipes.db"
+	}
 	return &Config{
-		ServerPort: ":8080",
-		DBPath:     "data/recipes.db",
+		ServerPort: port,
+		DBPath:     dbPath,
 	}
 }
 

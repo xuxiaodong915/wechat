@@ -20,12 +20,13 @@ RUN mkdir -p data uploads
 # Copy seed images (sichuan_1.jpg, etc.) for initial image assignment
 COPY --from=builder /app/images ./images
 
-# Expose API port
-EXPOSE 8080
+# Expose API port (80 for WeChat Cloud Hosting)
+EXPOSE 80
 
 # Use a non-root user for security
 RUN adduser -D appuser && chown -R appuser:appuser /app
 USER appuser
 
-# Start
+# Start with PORT=80 for cloud hosting
+ENV PORT=80
 CMD ["./recipe-server"]

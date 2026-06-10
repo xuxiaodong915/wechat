@@ -30,7 +30,7 @@
     }
   },
   "compileType": "miniprogram",
-  "libVersion": "3.3.4",
+  "libVersion": "3.16.1",
   "appid": "wx5c394ff10c73e087",
   "projectname": "今日菜谱",
   "condition": {},
